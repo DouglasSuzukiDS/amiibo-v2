@@ -5,12 +5,12 @@ type Props = {
    item: CartItem
 }
 export const Counter = ({ item }: Props) => {
-   const { addToCart, removeItemCart } = useCart()
+   const { addToCart, removeItemQuantityCart, removeItemCart } = useCart()
 
    return (
       <div className="flex">
          <span
-            onClick={() => removeItemCart(item.name)}
+            onClick={() => removeItemQuantityCart(item.name)}
             className="flex justify-center items-center w-[24px] h-[24px] text-white font-bold rounded-l-md bg-red-600">
             -
          </span>

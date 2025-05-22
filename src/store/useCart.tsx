@@ -1,4 +1,4 @@
-import { getStorage, saveStorage } from "@/lib/storage";
+import { compareHours, getStorage, saveHours, saveStorage } from "@/lib/storage";
 import { create } from "zustand";
 
 type CartStore = {
@@ -9,6 +9,7 @@ type CartStore = {
 
    loadCart: () => void
    addToCart: (item: CartItem) => void
+   removeItemQuantityCart: (name: string) => void
    removeItemCart: (name: string) => void
    cartValue: () => number
 
@@ -22,9 +23,14 @@ export const useCart = create<CartStore>((set, get) => ({
 
    loadCart() {
       let storage = getStorage('cart')
+      let data: CartItem[] = []
+      const spent15Minutes = compareHours('hours')
 
-
-
+      // if (storage && spent15Minutes === false) {
+      if (storage) {
+         data = storage
+         set(state => ({ ...state, cart: data }))
+      }
    },
 
    addToCart: (item: CartItem) => set(state => {
@@ -38,6 +44,7 @@ export const useCart = create<CartStore>((set, get) => ({
          cloneCart.push(item)
 
          saveStorage('cart', cloneCart)
+         // saveHours('hours')
 
          return { ...state, cart: cloneCart }
       }
@@ -51,11 +58,12 @@ export const useCart = create<CartStore>((set, get) => ({
       }
 
       saveStorage('cart', cloneCart)
+      // saveHours('hours')
 
       return { ...state, cart: cloneCart }
    }),
 
-   removeItemCart: (name: string) => set(state => {
+   removeItemQuantityCart: (name: string) => set(state => {
       const cloneCart = [...state.cart]
 
       // Aqui retorna o index do item, se ele não exitir ele retorna -1
@@ -76,13 +84,26 @@ export const useCart = create<CartStore>((set, get) => ({
          const filtredItems = cloneCart.filter((item) => item.name !== name)
 
          saveStorage('cart', cloneCart)
-
+         // saveHours('hours')
          return { ...state, cart: filtredItems }
       }
 
       saveStorage('cart', cloneCart)
+      // saveHours('hours')
 
       return { ...state, cart: cloneCart }
+   }),
+
+   removeItemCart: (name: string) => set(state => {
+      const cloneCart = [...state.cart]
+
+      // Caso o item já existe no carrinho, ele remove 1 da quatidade
+      const filtredItems = cloneCart.filter((item) => item.name !== name)
+
+      saveStorage('cart', filtredItems)
+      // saveHours('hours')
+
+      return { ...state, cart: filtredItems }
    }),
 
    cartValue: () => get().cart.reduce((total, item) => total + (item.price * item.quantity), 0),

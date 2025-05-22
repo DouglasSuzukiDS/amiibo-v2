@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "sonner";
 import { Cart } from "@/components/cart";
+import { TooltipProvider } from "@/components/ui/tooltip";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -29,9 +30,12 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
-        <Toaster richColors />
-        <Cart />
+        <TooltipProvider>
+          {children}
+          <Toaster richColors />
+          {/* Add children here if needed */}
+          <Cart />
+        </TooltipProvider>
       </body>
     </html>
   );

@@ -2,7 +2,7 @@
 
 import { useCart } from "@/store/useCart"
 import { Drawer, DrawerContent, DrawerTitle } from "./ui/drawer"
-import { useEffect, useState } from "react"
+import { use, useEffect, useState } from "react"
 import { ProductCartItem } from "./productCartItem"
 import { EmptyCart } from "./cartEmpty"
 import { OrderPrice } from "./orderPrice"
@@ -13,9 +13,11 @@ export const Cart = () => {
    const [open, setOpen] = useState(cart.open)
 
    useEffect(() => {
-      setOpen(cart.open)
-
       cart.loadCart()
+   }, [])
+
+   useEffect(() => {
+      setOpen(cart.open)
    }, [cart])
 
    return (
@@ -29,9 +31,11 @@ export const Cart = () => {
             <div className="flex flex-col flex-1 justify-between overflow-y-auto">
                {cart.cart.length === 0 && <EmptyCart />}
 
-               {cart.cart.map(item => (
-                  <ProductCartItem key={item.name} item={item} />
-               ))}
+               <div>
+                  {cart.cart.map(item => (
+                     <ProductCartItem key={item.name} item={item} />
+                  ))}
+               </div>
 
                {cart.cart.length > 0 && (
                   <div className="flex flex-col gap-2">
