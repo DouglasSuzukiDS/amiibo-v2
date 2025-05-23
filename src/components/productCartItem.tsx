@@ -14,7 +14,7 @@ export const ProductCartItem = ({ item, index }: Props) => {
    const { removeItemCart } = useCart()
 
    return (
-      <div className={`flex h-[120px] gap-4 items-center border border-bg-border-nitendo rounded-md p-2 
+      <div className={`flex flex-col h-auto gap-4 items-center border border-bg-border-nitendo rounded-md p-2 sm:h-[120px] sm:flex-row
       ${index % 2 === 0 ? 'border-blue-nitendo' : 'border-red-nitendo'}
       `}>
          <div className={`flex h-full flex-col justify-center items-center p-4 border rounded-md
@@ -30,29 +30,35 @@ export const ProductCartItem = ({ item, index }: Props) => {
                height={50} />
          </div>
 
-         <div className="flex flex-col flex-1 gap-4">
-            <p className="text-sm">Nome: {item.name} - Versão: {item.version}</p>
+         <div className="flex flex-col flex-1">
+            <p className={`text-sm font-bold ${index % 2 === 0 ? 'text-red-nitendo' : 'text-blue-nitendo'}`}>
+               Nome: {item.name} - Versão: {item.version}
+            </p>
 
-            <div className="flex justify-between items-center">
-               <p>{formatPrice(item.price * item.quantity)}</p>
+            <div className="flex flex-col sm:flex-row justify-between items-center sm:gap-4">
+               <p className={`font-bold ${index % 2 === 0 ? 'text-blue-nitendo' : 'text-red-nitendo'}`}>
+                  {formatPrice(item.price * item.quantity)}
+               </p>
 
-               <Counter item={item} />
+               <div className="flex w-fulljustify-between items-center gap-4">
+                  <Counter item={item} />
 
-               <Button
-                  variant="destructive"
-                  className="text-red-nitendo bg-transparent cursor-pointer border-0 hover:bg-transparent hover:text-red-nitendo"
-                  onClick={() => removeItemCart(item.name, item.version)}>
-                  <Tooltip>
-                     <TooltipTrigger asChild className="border-0">
-                        <p>X</p>
-                     </TooltipTrigger>
+                  <Button
+                     variant="destructive"
+                     className="text-red-nitendo bg-transparent cursor-pointer border-0 hover:bg-transparent hover:text-red-nitendo"
+                     onClick={() => removeItemCart(item.name, item.version)}>
+                     <Tooltip>
+                        <TooltipTrigger asChild className="border-0">
+                           <p>X</p>
+                        </TooltipTrigger>
 
-                     <TooltipContent >
-                        <p>Remover item</p>
-                     </TooltipContent>
+                        <TooltipContent >
+                           <p>Remover item</p>
+                        </TooltipContent>
 
-                  </Tooltip>
-               </Button>
+                     </Tooltip>
+                  </Button>
+               </div>
 
             </div>
          </div>

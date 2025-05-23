@@ -26,7 +26,7 @@ export const Cart = () => {
          open={open}
          onOpenChange={open => cart.setOpen(open)}>
          <DrawerContent className="p-4 bg-sc-nitendo">
-            <DrawerTitle>Meu carrinho</DrawerTitle>
+            <DrawerTitle className="text-center text-red-nitendo mb-4">Meu carrinho</DrawerTitle>
 
             <div className="flex flex-col flex-1 justify-between overflow-y-auto">
                {cart.cart.length === 0 && <EmptyCart />}

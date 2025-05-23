@@ -21,7 +21,9 @@ export const Card = ({ data, index }: Props) => {
 
          <div className="text-center">
             <p className="font-bold truncate">{data.name}</p>
-            <p className="text-sm">{`R$ 30,00`}</p>
+            <p className={`text-sm font-bold ${index % 2 === 0 ? 'text-blue-nitendo' : 'text-red-nitendo'}`}>
+               {`R$ 30,00`}
+            </p>
          </div>
       </div>
    )

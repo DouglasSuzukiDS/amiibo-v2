@@ -32,7 +32,7 @@ export const ProductModal = ({ char }: Props) => {
    }
 
    return (
-      <DialogContent className="flex max-h-[90vh] justify-center items-center flex-col sm:flex-row gap-4 overflow-y-auto">
+      <DialogContent className="flex max-h-[80vh] flex-col sm:flex-row overflow-y-scroll">
          <ProductImages
             image={char.image}
             name={char.name}
@@ -51,7 +51,7 @@ export const ProductModal = ({ char }: Props) => {
             <ShippingTo error={error} setError={setError} />
 
             <Button
-               className="bg-blue-border-nitendo hover:bg-blue-border-nitendo/90"
+               className="bg-blue-border-nitendo mt-3 hover:bg-blue-border-nitendo/90"
                onClick={handleAddToCart}>
                Adicionar ao carrinho
             </Button>

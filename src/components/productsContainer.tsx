@@ -12,7 +12,7 @@ type Props = {
 export const ProductsContainer = ({ marioSerie }: Props) => {
 
    return (
-      <div className="container w-full h-full flex flex-wrap justify-center my-10 p-10 gap-4 border border-bg-border-nitendo  rounded-md overflow-y-auto">
+      <div className="container w-full h-full flex flex-1 flex-wrap justify-center m-4 p-4 sm:m-10 sm:p-10 gap-4 border border-bg-border-nitendo  rounded-md overflow-y-auto">
          {marioSerie.map((char, index) => (
 
             <Dialog key={index}>
