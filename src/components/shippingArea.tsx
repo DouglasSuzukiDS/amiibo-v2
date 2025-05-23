@@ -41,7 +41,9 @@ export const ShippingTo = ({ error, setError }: Props) => {
             onChange={(e) => setCep(e.target.value)}
          />
 
-         <Button onClick={handleSearchCep}>
+         <Button
+            className="bg-blue-border-nitendo hover:bg-blue-border-nitendo/90"
+            onClick={handleSearchCep}>
             Calcular Frete
          </Button>
 

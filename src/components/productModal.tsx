@@ -51,8 +51,8 @@ export const ProductModal = ({ char }: Props) => {
             <ShippingTo error={error} setError={setError} />
 
             <Button
-               onClick={handleAddToCart}
-               disabled={error === true ? true : false}>
+               className="bg-blue-border-nitendo hover:bg-blue-border-nitendo/90"
+               onClick={handleAddToCart}>
                Adicionar ao carrinho
             </Button>
          </DialogHeader>

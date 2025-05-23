@@ -1,4 +1,5 @@
 import { Card } from "@/components/card";
+import { Footer } from "@/components/footer";
 import { Header } from "@/components/header";
 import { ProductImages } from "@/components/productImages";
 import { ProductsContainer } from "@/components/productsContainer";
@@ -14,10 +15,12 @@ export default async function Home() {
   const marioSerie = items.filter((char) => char.gameSeries === "Super Mario")
 
   return (
-    <main className="w-full h-screen flex justify-center flex-col items-center bg-gray-400">
+    <main className="w-full h-screen flex justify-center flex-col items-center bg-nitendo">
       <Header />
 
       <ProductsContainer marioSerie={marioSerie} />
+
+      <Footer />
     </main>
   );
 }

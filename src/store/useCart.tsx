@@ -10,7 +10,7 @@ type CartStore = {
    loadCart: () => void
    addToCart: (item: CartItem) => void
    removeItemQuantityCart: (name: string) => void
-   removeItemCart: (name: string) => void
+   removeItemCart: (name: string, version: number) => void
    cartValue: () => number
 
    clearCart: () => void
@@ -94,11 +94,11 @@ export const useCart = create<CartStore>((set, get) => ({
       return { ...state, cart: cloneCart }
    }),
 
-   removeItemCart: (name: string) => set(state => {
+   removeItemCart: (name: string, version: number) => set(state => {
       const cloneCart = [...state.cart]
 
       // Caso o item já existe no carrinho, ele remove 1 da quatidade
-      const filtredItems = cloneCart.filter((item) => item.name !== name)
+      const filtredItems = cloneCart.filter((item) => !(item.name === name && item.version == version))
 
       saveStorage('cart', filtredItems)
       // saveHours('hours')

@@ -43,6 +43,18 @@
   --radius-xl: calc(var(--radius) + 4px);
 }
 
+@theme {
+  --color-blue-nitendo: #8BB7F0;
+  --color-blue-border-nitendo: #4E7AB5;
+  --color-red-nitendo: #EF6388;
+  --color-red-border-nitendo: #C74343;
+  --color-bg-nitendo: #B0C1D4;
+  --color-bg-border-nitendo: #66798F;
+  --color-sc-nitendo: #E1EBF3;
+  --color-sc-border-nitendo: #788B9C;
+  --color-degrade-nitendo: linear-gradient(87.56deg, #8BB7F0 8.42%, #B0C1D4 51.56%, #C74343 99.45%);
+}
+
 :root {
   --radius: 0.625rem;
   --background: oklch(1 0 0);
@@ -112,10 +124,15 @@
   --sidebar-ring: oklch(0.556 0 0);
 }
 
+.bg-gradient-nitendo {
+  background-color: linear-gradient(87.56deg, #8BB7F0 8.42%, #B0C1D4 51.56%, #C74343 99.45%);
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
   }

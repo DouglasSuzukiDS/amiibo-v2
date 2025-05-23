@@ -8,13 +8,16 @@ import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip"
 
 type Props = {
    item: CartItem
+   index: number
 }
-export const ProductCartItem = ({ item }: Props) => {
+export const ProductCartItem = ({ item, index }: Props) => {
    const { removeItemCart } = useCart()
 
    return (
-      <div className="flex gap-4 items-center border-b border-b-slate-200 py-2">
-         <div className={`flex flex-col items-center p-4 border rounded-md
+      <div className={`flex h-[120px] gap-4 items-center border border-bg-border-nitendo rounded-md p-2 
+      ${index % 2 === 0 ? 'border-blue-nitendo' : 'border-red-nitendo'}
+      `}>
+         <div className={`flex h-full flex-col justify-center items-center p-4 border rounded-md
          ${item.version === 1 && 'bg-transparent'}
          ${item.version === 2 && 'bg-red-300'}
          ${item.version === 3 && 'bg-green-300'}
@@ -37,10 +40,10 @@ export const ProductCartItem = ({ item }: Props) => {
 
                <Button
                   variant="destructive"
-                  className="text-red-600 bg-transparent cursor-pointer hover:bg-transparent hover:text-red-600"
-                  onClick={() => removeItemCart(item.name)}>
+                  className="text-red-nitendo bg-transparent cursor-pointer border-0 hover:bg-transparent hover:text-red-nitendo"
+                  onClick={() => removeItemCart(item.name, item.version)}>
                   <Tooltip>
-                     <TooltipTrigger asChild>
+                     <TooltipTrigger asChild className="border-0">
                         <p>X</p>
                      </TooltipTrigger>
 

@@ -8,7 +8,7 @@ export const OrderPrice = () => {
    const [shipping, setShipping] = useState(10)
 
    return (
-      <div className="mt-4 p-2 border-b">
+      <div className="mt-4 p-2 border-y border-t-red-border-nitendo border-b-blue-border-nitendo">
          <div className="flex flex-col justify-end items-end sm:flex-row sm:justify-between mb-2">
             <p>
                Valor dos Produtos: {formatPrice(cart.cartValue())}

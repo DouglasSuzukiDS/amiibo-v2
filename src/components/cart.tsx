@@ -25,15 +25,15 @@ export const Cart = () => {
          direction="right"
          open={open}
          onOpenChange={open => cart.setOpen(open)}>
-         <DrawerContent className="p-4">
+         <DrawerContent className="p-4 bg-sc-nitendo">
             <DrawerTitle>Meu carrinho</DrawerTitle>
 
             <div className="flex flex-col flex-1 justify-between overflow-y-auto">
                {cart.cart.length === 0 && <EmptyCart />}
 
-               <div>
-                  {cart.cart.map(item => (
-                     <ProductCartItem key={item.name} item={item} />
+               <div className="flex flex-col gap-4">
+                  {cart.cart.map((item, index) => (
+                     <ProductCartItem key={`${item.name} - ${item.version}`} item={item} index={index} />
                   ))}
                </div>
 
